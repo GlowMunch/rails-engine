@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       resources :merchants, only: [:index, :show] do
         resources :items, only: [:index], module: :merchants
       end
+
+      resources :items, only: [:index, :show, :destroy, :create, :update] do
+        resources :merchant, only: [:index], controller: "items/merchants"
+      end
     end
   end
 end
