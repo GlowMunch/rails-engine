@@ -34,10 +34,10 @@ RSpec.describe "Item requests" do
 
     describe "Get /api/v1/items/item_id" do
       it "shows one item" do
-        create_list(:item, 10, merchant_id: @merchant1.id)
-        create_list(:item, 10, merchant_id: @merchant2.id)
+        item1 = FactoryBot.create(:item, merchant_id: @merchant1.id)
+        item_id = Item.first.id
 
-        get "/api/v1/items/#{Item.first.id}"
+        get "/api/v1/items/#{item_id}"
         expect(response).to be_successful
 
         item = JSON.parse(response.body, symbolize_names: true)
